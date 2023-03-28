@@ -1,25 +1,23 @@
 console.log("funguju")
 
 const form = document.querySelector("#registration")
-const input = document.querySelector("#email")
+const info = document.querySelector("#email")
 
-
-const odebirat = (event) => {
-    event.preventDefault()
-    const email = input.value
-    if (input.includes("@") === true) {
-        form.textContent = `Děkujeme za zájem o náš newsletter. Brzy vám na váš e-mail ${email} přijde první.`
+let check = (e) => {
+    if (info.value === "" || !info.value.includes("@")) {
+        info.classList.add("email-error")
     } else {
-        input.classList.add(".email-error")
+        info.classList.remove("email-error")
     }
 }
 
-input.addEventListener("input", (e) => {
-    if (input.value === "" && !input.value.includes("@")) {
-        input.classList.add(".email-error")
-    } else {
-        input.classList.remove(".email-error")
-    }
-})
+info.addEventListener("input", check)
+
+let odebirat = (event) => {
+    event.preventDefault()
+    const email = info.value
+    form.textContent = `Děkujeme za zájem o náš newsletter. Brzy vám na váš e-mail ${email} přijde první.`
+}
 
 form.addEventListener("submit", odebirat)
+
